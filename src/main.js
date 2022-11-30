@@ -4,8 +4,8 @@ import MenuScene from "./Scenes/MenuScene";
 import PreloadScene from "./Scenes/PreloadScene";
 
 const config = {
-  width: 800,
-  height: 600,
+  width: 480,
+  height: 640,
   type: Phaser.AUTO,
   scene: [PreloadScene, MenuScene, GameScene],
 };
