@@ -5,7 +5,13 @@ export default class PreloadScene extends Phaser.Scene {
     super("preload");
   }
   preload() {
+    this.kotakBG = this.add.graphics();
     this.progressGrap = this.add.graphics();
+
+    this.kotakBG.fillStyle(0xeeeeee, 0.3);
+    this.kotakBG.fillRect(140, 320, 200, 50);
+
+    this.add.text(240, 345, "Loading", { fontSize: "30px", color:"#ff0000" }).setOrigin(0.5);
 
     this.load.svg("vite", "vite.svg");
     this.load.svg("js", "javascript.svg");
@@ -31,26 +37,20 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.on("progress", this.updateProgress, this);
     this.load.on("complete", this.completeLoad, this);
 
-    this.load.on("filecomplete", function (key, type, data) {
-      console.log(key + " " + type + " " + data);
-    });
-    //this.load.update();
+    // this.load.on("filecomplete", function (key, type, data) {
+    //   console.log(key + " " + type + " " + data);
+    // });
   }
   updateProgress(value) {
-    console.log(value);
     this.progressGrap.clear();
     this.progressGrap.fillStyle(0xffffff, 1);
-    this.progressGrap.fillRect(0, 270, 200 * value, 60);
+    this.progressGrap.fillRect(150, 330, 180 * value, 30);
   }
   completeLoad() {
-    console.log("complete load");
     this.progressGrap.destroy();
+    this.kotakBG.destroy();
   }
   create() {
-    console.log("prepare jump to menu");
     this.scene.start("menu");
-  }
-  update() {
-    console.log("update game");
   }
 }
