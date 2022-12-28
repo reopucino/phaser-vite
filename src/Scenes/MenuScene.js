@@ -15,8 +15,17 @@ export default class MenuScene extends Phaser.Scene {
     this.add.image(400, 150, "logo");
 
     this.add.text(400, 550, "Menu Scene", { fontSize: "30px" }).setOrigin(0.5);
+
+    this.add
+      .text(400, 300, "Particle Scene", { fontSize: "30px" })
+      .setOrigin(0.5)
+      .setInteractive()
+      .on("pointerdown", this.changeIntoParticleScene, this);
   }
   changeGameScene() {
     this.scene.start("game");
+  }
+  changeIntoParticleScene() {
+    this.scene.start("example-particle");
   }
 }

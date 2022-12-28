@@ -6,8 +6,14 @@ export default class GameScene extends Phaser.Scene {
   }
   preload() {
     //this.add.image(30, 30, "vite");
-    this.add.image(90, 30, "js");
+    var image = this.add.image(90, 30, "js");
+
+    image.setInteractive();
+    image.on("pointerdown", this.backMenuScene, this);
 
     this.add.text(120, 90, "Game Scene");
+  }
+  backMenuScene() {
+    this.scene.start("menu");
   }
 }
