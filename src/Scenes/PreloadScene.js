@@ -32,7 +32,8 @@ export default class PreloadScene extends Phaser.Scene {
       "https://labs.phaser.io/assets/particles/flares.json"
     );
 
-    this.load.image("star", "img/star.png");
+    this.load.image("star", "assets/img/star.png");
+    this.load.image("back", "assets/img/back.png");
 
     this.load.image("sky", "https://labs.phaser.io/assets/skies/space3.png");
     this.load.image("char", "assets/char-0.png");

@@ -28,6 +28,11 @@ export default class GameScene extends Phaser.Scene {
 
     this.gameover = false;
 
+    let image = this.add.image(30, 30, "back").setScale(0.35);
+    image.setInteractive();
+    image.on("pointerdown", this.backtomainmenu, this);
+    image.setDepth(2);
+
     this.tambahkanBatangPohon = function () {
       var container = this.add.container(0, 0);
       container.setDataEnabled();
@@ -170,7 +175,7 @@ export default class GameScene extends Phaser.Scene {
     this.sound.add("bgm").play({ loop: true });
 
     this.add.image(config.width * 0.5, config.height * 0.5, "bg");
-    var char = this.add.image(200, 570, "char");
+    var char = this.add.image(config.width * 0.5 - 40, 570, "char");
 
     for (var i = 1; i < 10; i++) {
       var batangPohon = this.tambahkanBatangPohon();
@@ -187,19 +192,23 @@ export default class GameScene extends Phaser.Scene {
         batangPohon.data.set("ranting", random);
       }
 
-      batangPohon.setPosition(240, config.height - 70 * i);
+      batangPohon.setPosition(config.width * 0.5, config.height - 70 * i);
       arrayBatangPohon.push(batangPohon);
     }
 
     //add UI here
     var textDisplay = this.add
-      .text(240, 40, score, { fontSize: 50, color: "#000", align: "center" })
+      .text(config.width * 0.5, 40, score, {
+        fontSize: 50,
+        color: "#000",
+        align: "center",
+      })
       .setOrigin(0.5);
     textDisplay.setDepth(1);
 
-    this.add.image(80, 30, "bg-indicator").setScale(0.7, 0.7);
+    this.add.image(200, 30, "bg-indicator").setScale(0.7, 0.7);
     indicatortimer = this.add
-      .image(16, 30, "ui-indicator")
+      .image(136, 30, "ui-indicator")
       .setScale(0.5, 0.5)
       .setOrigin(0, 0.5);
     indicatortimer.displayWidth = MAX_DISPLAY_WIDTH;
@@ -208,7 +217,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.input.keyboard.on("keydown-RIGHT", () => {
       if (this.gameover) return;
-      char.x = 280;
+      char.x = config.width * 0.5 + 40;
       char.flipX = true;
       var tumbukan = this.cekTumbukan(POSISI_PLAYER_KANAN);
       if (tumbukan) return;
@@ -231,7 +240,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.input.keyboard.on("keydown-LEFT", () => {
       if (this.gameover) return;
-      char.x = 200;
+      char.x = config.width * 0.5 - 40;
       char.flipX = false;
       var tumbukan = this.cekTumbukan(POSISI_PLAYER_KIRI);
       if (tumbukan) return;
@@ -259,20 +268,33 @@ export default class GameScene extends Phaser.Scene {
       timeCountDown = 0;
       this.gameover = true;
       this.add
-        .image(config.width * 0.5, config.height * 0.5, "popup")
+        .image(
+          this.game.config.width * 0.5,
+          this.game.config.height * 0.5,
+          "popup"
+        )
         .setScale(3);
 
       this.add
-        .text(config.width * 0.5, config.height * 0.5, "GAME OVER", {
-          fontSize: 30,
-          color: "#000",
-          align: "center",
-        })
+        .text(
+          this.game.config.width * 0.5,
+          this.game.config.height * 0.5,
+          "GAME OVER",
+          {
+            fontSize: 30,
+            color: "#000",
+            align: "center",
+          }
+        )
         .setOrigin(0.5);
     }
     reduceTimer -= dt * 0.0001;
     if (timeCountDown > MAX_TIME_COUNT) timeCountDown = MAX_TIME_COUNT;
     indicatortimer.displayWidth =
       MAX_DISPLAY_WIDTH * (timeCountDown / MAX_TIME_COUNT);
+  }
+
+  backtomainmenu() {
+    this.scene.start("menu");
   }
 }

@@ -5,6 +5,10 @@ export default class ParticleStarScene extends Phaser.Scene {
     super("particle-star");
   }
   create() {
+    let image = this.add.image(30, 30, "back").setScale(0.35);
+    image.setInteractive();
+    image.on("pointerdown", this.backtomainmenu, this);
+
     this.particle = this.add.particles("star");
     this.emitter = this.particle.createEmitter({
       gravityY: 100,
@@ -24,5 +28,9 @@ export default class ParticleStarScene extends Phaser.Scene {
   spawnParticle(pointer) {
     //console.log(this.particle);
     this.emitter.explode(50, pointer.x, pointer.y);
+  }
+
+  backtomainmenu() {
+    this.scene.start("menu");
   }
 }

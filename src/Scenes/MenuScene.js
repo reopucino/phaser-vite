@@ -9,8 +9,8 @@ export default class MenuScene extends Phaser.Scene {
     this.add.image(30, 30, "vite");
     let image = this.add.image(770, 30, "js");
 
-    image.setInteractive();
-    image.on("pointerdown", this.changeGameScene, this);
+    //image.setInteractive();
+    //image.on("pointerdown", this.changeGameScene, this);
 
     this.add.image(400, 150, "logo");
 
@@ -31,6 +31,14 @@ export default class MenuScene extends Phaser.Scene {
       this.changeGameSceneParticleStar,
       this
     );
+
+    let gameSceneText = this.add
+      .text(400, 300, "Game Scene", { fontSize: "30px" })
+      .setOrigin(0.5)
+      .setInteractive();
+    gameSceneText.on("pointerdown", this.changeGameScene, this);
+
+    this.sound.stopAll();
   }
   changeGameScene() {
     this.scene.start("game");

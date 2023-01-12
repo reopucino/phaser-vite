@@ -6,7 +6,7 @@ import ParticleScene from "./Scenes/ParticleScene";
 import ParticleStarScene from "./Scenes/ParticleStarScene";
 
 const config = {
-  width: 480,
+  width: 800,
   height: 640,
   type: Phaser.AUTO,
   scene: [PreloadScene, MenuScene, GameScene, ParticleScene, ParticleStarScene],
