@@ -25,6 +25,15 @@ export default class PreloadScene extends Phaser.Scene {
       "logo",
       "https://labs.phaser.io/assets/sprites/phaser3-logo.png"
     );
+
+    this.load.atlas(
+      "flares",
+      "https://labs.phaser.io/assets/particles/flares.png",
+      "https://labs.phaser.io/assets/particles/flares.json"
+    );
+
+    this.load.image("star", "img/star.png");
+
     this.load.image("sky", "https://labs.phaser.io/assets/skies/space3.png");
     this.load.image("char", "assets/char-0.png");
     this.load.image("bg", "assets/img_bg.png");
@@ -50,6 +59,8 @@ export default class PreloadScene extends Phaser.Scene {
     console.log("selesai");
     // this.progressGrap.destroy();
     // this.kotakBG.destroy();
+
+    console.log("preload scene first");
   }
   create() {
     //console.log("jumping scene");
