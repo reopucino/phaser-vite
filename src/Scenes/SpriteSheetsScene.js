@@ -6,9 +6,9 @@ export default class SpriteSheetsScene extends Phaser.Scene {
   }
   create() {
     //this.add.image(30, 30, "vite");
-    var image = this.add.image(30, 30, "back").setScale(0.35).setInteractive();
+    // var image = this.add.image(30, 30, "back").setScale(0.35).setInteractive();
 
-    image.on("pointerdown", this.backMenuScene, this);
+    // image.on("pointerdown", this.backMenuScene, this);
 
     this.add
       .text(400, 90, "SpriteSheets Scene", { fontSize: "30px", color: "#ffffff" })
