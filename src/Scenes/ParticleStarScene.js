@@ -5,6 +5,14 @@ export default class ParticleStarScene extends Phaser.Scene {
     super("particle-star");
   }
   create() {
+    this.add
+      .text(400, 90, "Particle Star Scene", { fontSize: "30px", color: "#ffffff" })
+      .setOrigin(0.5);
+
+    this.add
+      .text(400, 400, "CLICK TO SHOW THE STAR", { fontSize: "20px", color: "#ffffff" })
+      .setOrigin(0.5);
+
     let image = this.add.image(30, 30, "back").setScale(0.35);
     image.setInteractive();
     image.on("pointerdown", this.backtomainmenu, this);

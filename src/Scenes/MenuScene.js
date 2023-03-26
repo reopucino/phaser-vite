@@ -14,7 +14,12 @@ export default class MenuScene extends Phaser.Scene {
 
     this.add.image(400, 150, "logo");
 
-    this.add.text(400, 550, "Menu Scene", { fontSize: "30px" }).setOrigin(0.5);
+    //this.add.text(400, 550, "Menu Scene", { fontSize: "30px" }).setOrigin(0.5);
+    let gameSceneText = this.add
+      .text(400, 300, "Game Scene", { fontSize: "30px" })
+      .setOrigin(0.5)
+      .setInteractive();
+    gameSceneText.on("pointerdown", this.changeGameScene, this);
 
     let particleSceneText = this.add
       .text(400, 350, "Particle Scene", { fontSize: "30px" })
@@ -26,17 +31,13 @@ export default class MenuScene extends Phaser.Scene {
       .text(400, 400, "Particle Star Scene", { fontSize: "30px" })
       .setOrigin(0.5)
       .setInteractive();
-    particleStarSceneText.on(
-      "pointerdown",
-      this.changeGameSceneParticleStar,
-      this
-    );
+    particleStarSceneText.on("pointerdown", this.changeGameSceneParticleStar, this);
 
-    let gameSceneText = this.add
-      .text(400, 300, "Game Scene", { fontSize: "30px" })
+    this.add
+      .text(400, 450, "SpriteSheets Scene", { fontSize: "30px" })
       .setOrigin(0.5)
-      .setInteractive();
-    gameSceneText.on("pointerdown", this.changeGameScene, this);
+      .setInteractive()
+      .on("pointerdown", this.changeSpriteSheetsScene, this);
 
     this.sound.stopAll();
   }
@@ -48,5 +49,8 @@ export default class MenuScene extends Phaser.Scene {
   }
   changeGameSceneParticleStar() {
     this.scene.start("particle-star");
+  }
+  changeSpriteSheetsScene() {
+    this.scene.start("ss-example");
   }
 }
